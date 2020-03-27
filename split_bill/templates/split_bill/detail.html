@@ -1,0 +1,11 @@
+{% extends "split_bill/index.html" %}
+
+{% block title %}{{ bill.date }}{% endblock %}
+
+{% block content %}
+{{ bill.id }}
+{{ bill.full_bill }}
+{{ bill.date }}
+{{ bill.split_num }}
+{{ bill.split }}
+{% endblock %}
