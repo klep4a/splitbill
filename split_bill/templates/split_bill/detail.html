@@ -1,11 +1,14 @@
 {% extends "split_bill/index.html" %}
 
-{% block title %}{{ bill.date }}{% endblock %}
+{% block title %}{% endblock %}
 
 {% block content %}
-{{ bill.id }}
+<strong>For your`e bill</strong>
 {{ bill.full_bill }}
-{{ bill.date }}
+<strong>result splitting between</strong>
 {{ bill.split_num }}
-{{ bill.split }}
+<strong>friends is</strong>
+{% for each in bill.split %}
+<p>{{ each }}</p>
+{% endfor %}
 {% endblock %}

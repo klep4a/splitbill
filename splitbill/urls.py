@@ -17,6 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('split_bill/', include('split_bill.urls')),
+    path('', include('split_bill.urls')),
     path('admin/', admin.site.urls),
 ]
