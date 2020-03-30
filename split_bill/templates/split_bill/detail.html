@@ -5,9 +5,9 @@
 {% block content %}
 <strong>For your`e bill</strong>
 {{ bill.full_bill }}
-<strong>result splitting between</strong>
+<strong>, result splitting between</strong>
 {{ bill.split_num }}
-<strong>friends is</strong>
+<strong>friends is</strong><p></p>
 {% for each in bill.split %}
 <p>{{ each }}</p>
 {% endfor %}
