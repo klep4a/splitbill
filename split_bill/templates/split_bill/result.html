@@ -1,14 +1,21 @@
 {% extends "split_bill/index.html" %}
 
-{% block title %}{% endblock %}
+{% block title %}Result{% endblock %}
 
 {% block content %}
 <strong>For your`e bill</strong>
-{{ bill.full_bill }}
+{{ bill.full_bill}}
 <strong>result splitting between</strong>
 {{ bill.split_num }}
 <strong>friends is</strong>
 {% for each in bill.split %}
 <p>{{ each }}</p>
 {% endfor %}
+<!--<form action="{{ bill.id }}" method="post">-->
+<!--&lt;!&ndash;    <input type="hidden" name="id" value="{{ bill.id }}" />&ndash;&gt;-->
+<!--    <input type="submit" value="Add friends bills">-->
+<!--</form>-->
+<p align="bottom" style="text-align: left"><a href="{{ bill.get_absolute_url }}">Detail</a></p>
+<p align="bottom" style="text-align: right"><a href="{% url 'split_bill:index' %}">Home</a></p>
+<p align="bottom" style="text-align: right">обработано счетов: {{ bill.id }}</p>
 {% endblock %}

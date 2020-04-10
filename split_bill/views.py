@@ -1,4 +1,5 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, HttpResponse
+from django.views import generic
 from . import forms
 from .models import Bill
 
@@ -24,6 +25,12 @@ def index(request):
                    'header': 'Welcome to SplitBillApp!'})
 
 
-def detail(request, bill_id):
-    bill = get_object_or_404(Bill, pk=bill_id)
-    return render(request, 'split_bill/detail.html', {'bill': bill})
+def bill_details(request, bill_id):
+    bill = get_object_or_404(Bill,
+                             id=bill_id)
+    return render(request,
+                  'split_bill/detail.html',
+                  {'bill': bill})
+
+# class BillDetailView(generic.DetailView):
+#     model = Bill
