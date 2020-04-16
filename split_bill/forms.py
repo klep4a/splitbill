@@ -12,3 +12,9 @@ class PersonForm(forms.ModelForm):
     class Meta:
         model = models.Person
         exclude = ('bill',)
+
+
+class PersonBillForm(forms.ModelForm):
+    class Meta:
+        model = models.PersonBill
+        fields = ('pers_bill',)

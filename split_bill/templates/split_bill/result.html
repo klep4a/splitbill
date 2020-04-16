@@ -15,7 +15,8 @@
 <!--&lt;!&ndash;    <input type="hidden" name="id" value="{{ bill.id }}" />&ndash;&gt;-->
 <!--    <input type="submit" value="Add friends bills">-->
 <!--</form>-->
-<p align="bottom" style="text-align: left"><a href="{{ bill.get_absolute_url }}">Detail</a></p>
+<strong>чтобы посчитать счета друзей раздельно:</strong>
+<p align="bottom" style="text-align: left"><a href="{% url 'split_bill:bill_detail' bill.id %}">Detail</a></p>
 <p align="bottom" style="text-align: right"><a href="{% url 'split_bill:index' %}">Home</a></p>
 <p align="bottom" style="text-align: right">обработано счетов: {{ bill.id }}</p>
 {% endblock %}

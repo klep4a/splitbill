@@ -11,8 +11,8 @@ class Bill(models.Model):
     split_num = models.PositiveSmallIntegerField(null=True)
     # objects = models.Manager()
 
-    # def __str__(self):
-    #     return 'Bill: {}, split: {}'.format(self.full_bill, self.split_num)
+    def __str__(self):
+        return 'Bill: {}, split: {}'.format(self.full_bill, self.split_num)
 
     def split(self):
         """Returns the list of splitted values."""
@@ -28,9 +28,9 @@ class Bill(models.Model):
     # class Meta:
     #     ordering = ['-date_time']
 
-    def get_absolute_url(self):
-        return reverse('split_bill:bill_details',
-                       args=[self.id])
+    # def get_absolute_url(self):
+    #     return reverse('split_bill:bill_detail',
+    #                    args=[self.id])
 
 
 class Person(models.Model):
@@ -44,7 +44,7 @@ class Person(models.Model):
 
 class PersonBill(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
-    pbill = models.DecimalField(max_digits=6, decimal_places=2)
+    pers_bill = models.DecimalField(max_digits=6, decimal_places=2)
 
     def __str__(self):
-        return 'PBill: {} for {}'.format(self.pbill, self.person)
+        return 'PBill: {} for {}'.format(self.pers_bill, self.person)
