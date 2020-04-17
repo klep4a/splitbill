@@ -8,13 +8,11 @@
 <strong>result splitting between</strong>
 {{ bill.split_num }}
 <strong>friends is</strong>
+
 {% for each in bill.split %}
 <p>{{ each }}</p>
 {% endfor %}
-<!--<form action="{{ bill.id }}" method="post">-->
-<!--&lt;!&ndash;    <input type="hidden" name="id" value="{{ bill.id }}" />&ndash;&gt;-->
-<!--    <input type="submit" value="Add friends bills">-->
-<!--</form>-->
+
 <strong>чтобы посчитать счета друзей раздельно:</strong>
 <p align="bottom" style="text-align: left"><a href="{% url 'split_bill:bill_detail' bill.id %}">Detail</a></p>
 <p align="bottom" style="text-align: right"><a href="{% url 'split_bill:index' %}">Home</a></p>

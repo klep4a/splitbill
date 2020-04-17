@@ -37,16 +37,12 @@ def bill_detail(request, bill_id):
     if request.method == 'POST':
         person_formset = PersonFormSet(request.POST, instance=bill)
         if person_formset.is_valid():
-            print(person_formset.cleaned_data)
             persons = person_formset.save(commit=False)
-            print(request)
             for person in persons:
                 person.save()
-                print(person)
             return render(request,
                           'split_bill/persons_list.html',
                           {'bill': bill,
-                           'persons_lists': persons,
                            'header': 'Input friends bills'})
     else:
         person_formset = PersonFormSet(instance=bill)
@@ -57,12 +53,20 @@ def bill_detail(request, bill_id):
                    'header': 'Bill detail'})
 
 
-class PersonsListView(generic.ListView):
-    model = Person
-    # template_name = 'persons_list.html'
-    # queryset = Person.objects.all()
-    # context_object_name = 'persons_list'
+def persons_list(request, bill_id):
+    bill = get_object_or_404(Bill,
+                             id=bill_id)
+    return render(request,
+                  'split_bill/persons_list.html',
+                  {'bill': bill,
+                   'header': 'Persons list'})
 
 
-class PersonDetailView(generic.DetailView):
-    model = PersonBill
+def person_detail(request, person_id):
+    person = get_object_or_404(Person,
+                               id=person_id)
+    # print(person.bill.pk)
+    return render(request,
+                  'split_bill/person_detail.html',
+                  {'person': person,
+                   'header': 'Person detail'})
