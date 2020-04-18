@@ -42,7 +42,8 @@ def bill_detail(request, bill_id):
                 person.save()
             return render(request,
                           'split_bill/persons_list.html',
-                          {'bill': bill,
+                          {'persons': persons,
+                              # 'bill': bill,
                            'header': 'Input friends bills'})
     else:
         person_formset = PersonFormSet(instance=bill)
@@ -56,16 +57,18 @@ def bill_detail(request, bill_id):
 def persons_list(request, bill_id):
     bill = get_object_or_404(Bill,
                              id=bill_id)
+    persons = bill.person_set.all()
+    print(bill.id, persons)
     return render(request,
                   'split_bill/persons_list.html',
-                  {'bill': bill,
+                  {'persons': persons,
                    'header': 'Persons list'})
 
 
 def person_detail(request, person_id):
     person = get_object_or_404(Person,
                                id=person_id)
-    # print(person.bill.pk)
+    print(person.bill.pk, person.id, person)
     return render(request,
                   'split_bill/person_detail.html',
                   {'person': person,

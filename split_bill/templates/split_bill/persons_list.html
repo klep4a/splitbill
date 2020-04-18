@@ -4,10 +4,10 @@
 
 {% block content %}
 <strong>For your`e bill</strong>
-{{ bill.full_bill }}
+{{ persons.bill.full_bill }}
 <strong>friends names is</strong>
 
-{% for person in bill.person_set.all %}
+{% for person in persons %}
 <br>{{ person.person_name }}<a href="{% url 'split_bill:person_detail' person.id %}"> Detail</a>
 {% endfor %}
 

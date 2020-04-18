@@ -4,11 +4,11 @@
 
 {% block content %}
 <strong>For your`e bill</strong>
-{{ person.bill.full_bill }}
+{{ person.bill.full_bill }}/{{person.bill.id}}
 <strong>result splitting between</strong>
 {{ person.bill.split_num }}
 <strong>friends names is</strong>
-{{ person.person_name }}{{ person.id }}{{person.bill.id}}
+{{ person.person_name }}/{{ person.id }}
 {% for char in person.person_name %}
 {{ char }}
 {% endfor %}
