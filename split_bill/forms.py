@@ -11,10 +11,10 @@ class BillForm(forms.ModelForm):
 class PersonForm(forms.ModelForm):
     class Meta:
         model = models.Person
-        exclude = ('bill',)
+        exclude = ('bill', 'summa')
 
 
 class PersonBillForm(forms.ModelForm):
     class Meta:
         model = models.PersonBill
-        fields = ('pers_bill',)
+        fields = ('person_partbill',)

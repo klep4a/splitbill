@@ -9,7 +9,6 @@ class Bill(models.Model):
     full_bill = models.DecimalField(max_digits=6, decimal_places=2)
     date_time = models.DateTimeField(default=timezone.now)
     split_num = models.PositiveSmallIntegerField(null=True)
-    # objects = models.Manager()
 
     def __str__(self):
         return 'Bill: {}, split: {}'.format(self.full_bill, self.split_num)
@@ -25,26 +24,21 @@ class Bill(models.Model):
             self.split_list.append(self.full_bill)
         return self.split_list
 
-    # class Meta:
-    #     ordering = ['-date_time']
-
-    # def get_absolute_url(self):
-    #     return reverse('split_bill:bill_detail',
-    #                    args=[self.id])
-
 
 class Person(models.Model):
     bill = models.ForeignKey(Bill, on_delete=models.CASCADE)
     person_name = models.CharField(max_length=50)
-    # person_count == Bill.split_num
+    # person_num == Bill.split_num
+    summa = models.DecimalField(max_digits=6, decimal_places=2, null=True)
+    # summa calculate when views.final called
 
     def __str__(self):
-        return 'Name: {}'.format(self.person_name)
+        return 'Name: {} for {}'.format(self.person_name, self.bill)
 
 
 class PersonBill(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
-    pers_bill = models.DecimalField(max_digits=6, decimal_places=2)
+    person_partbill = models.DecimalField(max_digits=6, decimal_places=2)
 
     def __str__(self):
-        return 'PBill: {} for {}'.format(self.pers_bill, self.person)
+        return 'PBill: {} for {}'.format(self.person_partbill, self.person)
