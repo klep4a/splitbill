@@ -1,0 +1,15 @@
+{% extends "split_bill/index.html" %}
+
+{% block title %}Persons list{% endblock %}
+
+{% block content %}
+<strong>For your`e bill</strong>
+{{ persons.bill.full_bill }}
+<strong>list friends is</strong>
+
+{% for person in persons %}
+<br>{{ person.person_name }}<a href="{% url 'split_bill:person_detail' person.id %}"> Detail bill</a>
+{% endfor %}
+
+<p align="bottom" style="text-align: right"><a href="{% url 'split_bill:index' %}">Home</a></p>
+{% endblock %}

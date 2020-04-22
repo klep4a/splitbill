@@ -1,0 +1,25 @@
+{% extends "split_bill/index.html" %}
+
+{% block title %}Person Bill Detail{% endblock %}
+
+{% block content %}
+<strong>For your`e bill</strong>
+{{ person.bill.full_bill }}
+<strong>for detail splitting between</strong>
+{{ person.bill.split_num }}
+<strong>friends<br>
+    for friend: </strong><br>
+{{ person.person_name }}
+{% for pbill in person.personbill_set.all %}
+    {{ pbill.person_partbill }}<strong> + </strong>
+{% endfor %}
+<form action="." method="post">
+    {% csrf_token %}
+    {{ p_bill_form.as_p }}
+    <input type="submit" value="Input personal bills for {{ person.person_name }}">
+</form>
+<p align="bottom" style="text-align: left"><a href="{% url 'split_bill:persons_list' person.bill.id %}">Return to Persons List</a></p>
+<strong>for get final result splitting:</strong>
+<p align="bottom" style="text-align: left"><a href="{% url 'split_bill:final' person.bill.id %}">Get final split bill</a></p>
+<p align="bottom" style="text-align: right"><a href="{% url 'split_bill:index' %}">Home</a></p>
+{% endblock %}
