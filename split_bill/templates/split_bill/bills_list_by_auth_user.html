@@ -1,0 +1,19 @@
+{% extends "split_bill/index.html" %}
+
+{% block content %}
+    <h1>Hi, {{ request.user.first_name }}! Your`e bills:</h1>
+
+    {% if bill_list %}
+    <ul>
+      {% for bill in bill_list %}
+      <li>
+        <a href="{% url 'split_bill:final' bill.pk %}">{{ bill.full_bill }}</a> ({{ bill.date_time }})
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <p>There are no bills.</p>
+    {% endif %}
+    <p align="bottom" style="text-align: right"><a href="{% url 'split_bill:index' %}">Home</a></p>
+{% endblock %}

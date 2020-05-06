@@ -8,8 +8,8 @@
 <strong>for detail splitting between</strong>
 {{ person.bill.split_num }}
 <strong>friends<br>
-    for friend: </strong><br>
-{{ person.person_name }}
+    for friend: </strong>
+{{ person.person_name }}<strong> input friends partbills: </strong><br>
 {% for pbill in person.personbill_set.all %}
     {{ pbill.person_partbill }}<strong> + </strong>
 {% endfor %}

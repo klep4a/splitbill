@@ -5,7 +5,7 @@ from . import models
 class BillForm(forms.ModelForm):
     class Meta:
         model = models.Bill
-        exclude = ('date_time',)
+        exclude = ('date_time', 'user')
 
 
 class PersonForm(forms.ModelForm):

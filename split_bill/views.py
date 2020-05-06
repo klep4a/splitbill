@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, render, redirect, HttpResponse
 from django.views import generic
 from django.forms import inlineformset_factory, modelformset_factory
@@ -26,6 +28,7 @@ def index(request):
                    'header': 'Welcome to SplitBillApp!'})
 
 
+@login_required
 def bill_detail(request, bill_id):
     bill = get_object_or_404(Bill,
                              id=bill_id)
@@ -59,7 +62,8 @@ def persons_list(request, bill_id):
     persons = bill.person_set.all()
     return render(request,
                   'split_bill/persons_list.html',
-                  {'persons': persons,
+                  {'bill': bill,
+                   'persons': persons,
                    'header': 'Persons list'})
 
 
@@ -103,3 +107,12 @@ def final(request, bill_id):
                    'header': 'Final result for bill {} \u263A'.format(
                        bill.full_bill
                    )})
+
+
+class UserBillsListView(LoginRequiredMixin, generic.ListView):
+    model = Bill
+    template_name = 'split_bill/bills_list_by_auth_user.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        return Bill.objects.filter(user=self.request.user)
