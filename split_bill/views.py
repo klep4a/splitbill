@@ -103,9 +103,9 @@ def final(request, bill_id):
     persons = bill.person_set.all()
     for person in persons:
         summa = 0
-        pbills = person.personbill_set.all()
-        for pbill in pbills:
-            summa += pbill.person_partbill
+        part_bills = person.personbill_set.all()
+        for part_bill in part_bills:
+            summa += part_bill.person_partbill
         person.summa = summa
         person.save()
     return render(request,
@@ -119,7 +119,6 @@ def final(request, bill_id):
 class UserBillsListView(LoginRequiredMixin, generic.ListView):
     model = Bill
     template_name = 'split_bill/bills_list_by_auth_user.html'
-    paginate_by = 10
 
     def get_queryset(self):
         return Bill.objects.filter(user=self.request.user)

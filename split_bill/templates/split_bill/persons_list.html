@@ -1,6 +1,6 @@
 {% extends "split_bill/index.html" %}
 
-{% block title %}Persons list{% endblock %}
+{% block title %}Friends list{% endblock %}
 
 {% block content %}
 <strong>For your`e bill</strong>
@@ -9,6 +9,9 @@
 
 {% for person in persons %}
 <br>{{ person.person_name }}<a href="{% url 'split_bill:person_detail' person.id %}"> Detail bill</a>
+    {% if person.summa %}
+    <p align="bottom" style="text-align: left"> or <a href="{% url 'split_bill:final' person.bill.id %}">See final split bill of </a>{{ bill.date_time }}</p>
+    {% endif %}
 {% endfor %}
 
 <p align="bottom" style="text-align: right"><a href="{% url 'split_bill:index' %}">Home</a></p>

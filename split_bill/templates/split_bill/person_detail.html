@@ -1,6 +1,6 @@
 {% extends "split_bill/index.html" %}
 
-{% block title %}Person Bill Detail{% endblock %}
+{% block title %}Friend Bill Detail{% endblock %}
 
 {% block content %}
 <strong>For your`e bill</strong>
@@ -9,16 +9,16 @@
 {{ person.bill.split_num }}
 <strong>friends<br>
     for friend: </strong>
-{{ person.person_name }}<strong> input friends partbills: </strong><br>
-{% for pbill in person.personbill_set.all %}
-    {{ pbill.person_partbill }}<strong> + </strong>
+{{ person.person_name }}<strong> input friends partbill: </strong><br>
+{% for part_bill in person.personbill_set.all %}
+    {{ part_bill.person_partbill }}<strong> + </strong>
 {% endfor %}
 <form action="." method="post">
     {% csrf_token %}
     {{ p_bill_form.as_p }}
     <input type="submit" value="Input personal bills for {{ person.person_name }}">
 </form>
-<p align="bottom" style="text-align: left"><a href="{% url 'split_bill:persons_list' person.bill.id %}">Return to Persons List</a></p>
+<p align="bottom" style="text-align: left"><a href="{% url 'split_bill:persons_list' person.bill.id %}">Return to friends List</a></p>
 <strong>for get final result splitting:</strong>
 <p align="bottom" style="text-align: left"><a href="{% url 'split_bill:final' person.bill.id %}">Get final split bill</a></p>
 <p align="bottom" style="text-align: right"><a href="{% url 'split_bill:index' %}">Home</a></p>

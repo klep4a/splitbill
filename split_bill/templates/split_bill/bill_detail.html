@@ -11,7 +11,7 @@
         <form action="." method="post">
             {% csrf_token %}
             {{ person_formset.as_p }}
-            <input type="submit" value="Input names">
+            <input type="submit" value="Input friends names">
         </form>
     <p align="bottom" style="text-align: right"><a href="{% url 'split_bill:index' %}">Home</a></p>
 {% endblock %}
