@@ -14,11 +14,12 @@
             {% if request.user.is_authenticated %}
                 Hi, {{ request.user.first_name }}!<br>
                 <li><a href="{% url 'split_bill:user_bills' %}">My Bills</a></li>
+                <li><a href="{% url "split_bill:profile" %}">Profile</a></li>
                 <li><a href="{% url "split_bill:logout" %}?next={{request.path}}">logout</a></li>
 
             {% else %}
                 <li><a href="{% url "split_bill:login" %}?next={{request.path}}">login</a></li>
-
+                <li><a href="{% url "split_bill:register" %}">register</a></li>
             {% endif %}
         </ul>
         </div>

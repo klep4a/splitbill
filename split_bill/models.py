@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
@@ -45,3 +46,10 @@ class PersonBill(models.Model):
 
     def __str__(self):
         return 'PBill: {} for {}'.format(self.person_partbill, self.person)
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "{username} profile.".format(username=self.user.username)

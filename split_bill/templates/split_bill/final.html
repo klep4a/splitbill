@@ -12,7 +12,7 @@
 {% for person in bill.person_set.all %}
 {{ person.person_name }}:
     {% for pbill in person.personbill_set.all %}
-        {{ pbill.person_partbill }} ;
+        {{ pbill.person_partbill }},
     {% endfor %}<strong> = </strong>{{ person.summa }}<br>
 {% endfor %}
 <p align="bottom" style="text-align: left"><a href="{% url 'split_bill:persons_list' bill.id %}">Return to Persons List</a></p>

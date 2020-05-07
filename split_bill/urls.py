@@ -12,5 +12,6 @@ urlpatterns = [
     path('<int:bill_id>/final/', views.final, name='final'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('user_bills/', views.UserBillsListView.as_view(), name='user_bills'),
-    # path('user_details/', views.UserBillDetailView.as_view(), name='user_details'),
+    path('register/', views.register, name='register'),
+    path('profile/', views.view_profile, name='profile'),
 ]

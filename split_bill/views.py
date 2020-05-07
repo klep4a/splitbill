@@ -3,8 +3,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, render, redirect, HttpResponse
 from django.views import generic
 from django.forms import inlineformset_factory, modelformset_factory
+
 from . import forms
-from .models import Bill, Person, PersonBill
+from .models import Bill, Person, PersonBill, Profile
+
 
 # Create your views here.
 
@@ -32,6 +34,8 @@ def index(request):
 def bill_detail(request, bill_id):
     bill = get_object_or_404(Bill,
                              id=bill_id)
+    bill.user = request.user
+    bill.save()
     PersonFormSet = inlineformset_factory(Bill,
                                           Person,
                                           form=forms.PersonForm,
@@ -56,6 +60,7 @@ def bill_detail(request, bill_id):
                    'header': 'Bill detail'})
 
 
+@login_required
 def persons_list(request, bill_id):
     bill = get_object_or_404(Bill,
                              id=bill_id)
@@ -67,6 +72,7 @@ def persons_list(request, bill_id):
                    'header': 'Persons list'})
 
 
+@login_required
 def person_detail(request, person_id):
     person = get_object_or_404(Person,
                                id=person_id)
@@ -90,6 +96,7 @@ def person_detail(request, person_id):
                    )})
 
 
+@login_required
 def final(request, bill_id):
     bill = get_object_or_404(Bill,
                              id=bill_id)
@@ -116,3 +123,28 @@ class UserBillsListView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return Bill.objects.filter(user=self.request.user)
+
+
+def register(request):
+    if request.method == "POST":
+        user_form = forms.UserRegistrationForm(request.POST)
+        if user_form.is_valid():
+            new_user = user_form.save(commit=False)
+            new_user.set_password(
+                user_form.cleaned_data['password'],
+            )
+            new_user.save()
+            Profile.objects.create(user=new_user)
+            return render(request,
+                          'split_bill/register_complete.html',
+                          {'new_user': new_user})
+    else:
+        user_form = forms.UserRegistrationForm()
+    return render(request,
+                  'split_bill/register.html',
+                  {'form': user_form})
+
+
+@login_required
+def view_profile(request):
+    return render(request, 'split_bill/profile.html', {'user': request.user})
