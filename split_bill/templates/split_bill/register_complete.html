@@ -1,0 +1,7 @@
+{% extends "split_bill/index.html" %}
+{% block title %}User created{% endblock %}
+
+{% block content %}
+    <p>Hello, {{ new_user.first_name }}</p>
+    Now you can <a href="{% url "split_bill:login" %}">LOGIN</a>
+{% endblock %}

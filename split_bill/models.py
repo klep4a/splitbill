@@ -1,6 +1,8 @@
+from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -9,6 +11,8 @@ class Bill(models.Model):
     full_bill = models.DecimalField(max_digits=6, decimal_places=2)
     date_time = models.DateTimeField(default=timezone.now)
     split_num = models.PositiveSmallIntegerField(null=True)
+    user = models.ForeignKey(User,
+                             on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return 'Bill: {}, split: {}'.format(self.full_bill, self.split_num)
@@ -42,3 +46,10 @@ class PersonBill(models.Model):
 
     def __str__(self):
         return 'PBill: {} for {}'.format(self.person_partbill, self.person)
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "{username} profile.".format(username=self.user.username)

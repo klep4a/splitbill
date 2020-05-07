@@ -3,16 +3,15 @@
 {% block title %}Detail{% endblock %}
 
 {% block content %}
-<strong>For your`e bill</strong>
-{{ bill.full_bill }}
-<strong>for splitting between</strong>
-{{ bill.split_num }}
-<strong>friends</strong><br>
-
-<form action="." method="post">
-    {% csrf_token %}
-    {{ person_formset.as_p }}
-    <input type="submit" value="Input names">
-</form>
-<p align="bottom" style="text-align: right"><a href="{% url 'split_bill:index' %}">Home</a></p>
+    <strong>For your`e bill</strong>
+    {{ bill.full_bill }}
+    <strong>for splitting between</strong>
+    {{ bill.split_num }}
+    <strong>friends</strong><br>
+        <form action="." method="post">
+            {% csrf_token %}
+            {{ person_formset.as_p }}
+            <input type="submit" value="Input friends names">
+        </form>
+    <p align="bottom" style="text-align: right"><a href="{% url 'split_bill:index' %}">Home</a></p>
 {% endblock %}

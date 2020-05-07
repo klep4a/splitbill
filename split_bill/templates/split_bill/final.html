@@ -1,6 +1,6 @@
 {% extends "split_bill/index.html" %}
 
-{% block title %}Person Bill Detail{% endblock %}
+{% block title %}Friends Bills Detail{% endblock %}
 
 {% block content %}
 <strong>For your`e bill</strong>
@@ -11,10 +11,10 @@
     for friends: </strong><br>
 {% for person in bill.person_set.all %}
 {{ person.person_name }}:
-    {% for pbill in person.personbill_set.all %}
-        {{ pbill.person_partbill }}
+    {% for part_bill in person.personbill_set.all %}
+        {{ part_bill.person_partbill }},
     {% endfor %}<strong> = </strong>{{ person.summa }}<br>
 {% endfor %}
-<p align="bottom" style="text-align: left"><a href="{% url 'split_bill:persons_list' bill.id %}">Return to Persons List</a></p>
+<p align="bottom" style="text-align: left"><a href="{% url 'split_bill:persons_list' bill.id %}">Return to friends List</a></p>
 <p align="bottom" style="text-align: right"><a href="{% url 'split_bill:index' %}">Home</a></p>
 {% endblock %}
