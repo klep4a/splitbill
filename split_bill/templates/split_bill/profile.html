@@ -2,5 +2,6 @@
 {% block title %}User profile{% endblock %}
 
 {% block content %}
-    <p>name: {{ user.first_name|add:user.last_name }}</p>
+    <p>name: {{ user.first_name|add:user.last_name }}<br>username: {{ user.username }}<br>user e-mail: {{ user.email }}</p>
+    <p align="bottom" style="text-align: right"><a href="{% url 'split_bill:index' %}">Home</a></p>
 {% endblock %}
