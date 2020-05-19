@@ -7,7 +7,6 @@
         <meta charset="utf-8" />
         <title>Splitbillapp {% block title %}Home{% endblock %}</title>
         <link rel="shortcut icon" href="https://static.djangoproject.com/img/favicon.6dbf28c0650e.ico">
-    </head>
     <body>
         <div class="container-fluid">
         <ul>
@@ -20,6 +19,7 @@
             {% else %}
                 <li><a href="{% url "split_bill:login" %}?next={{request.path}}">login</a></li>
                 <li><a href="{% url "split_bill:register" %}">register</a></li>
+				<li><a href="{% url "social:begin" "vk-oauth2" %}">Войти через VKонтакте</a></li>
             {% endif %}
         </ul>
         </div>

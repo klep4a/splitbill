@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap4',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -64,6 +65,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -132,3 +135,12 @@ EMAIL_HOST_USER = "klep4a@gmail.com"
 EMAIL_HOST_PASSWORD = 'suovipiddwczcsuw'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+AUTHENTICATION_BACKENDS = (
+'social_core.backends.vk.VKOAuth2',
+'django.contrib.auth.backends.ModelBackend',
+)
+SOCIAL_AUTH_VK_OAUTH2_KEY = '7472318'
+SOCIAL_AUTH_VK_OAUTH2_SECRET = 'KNImVBPwsIaoAaiA5GPC'
+SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
