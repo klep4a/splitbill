@@ -138,9 +138,16 @@ EMAIL_USE_TLS = True
 
 AUTHENTICATION_BACKENDS = (
 'social_core.backends.vk.VKOAuth2',
+'social_core.backends.google.GoogleOpenId',
+'social_core.backends.google.GoogleOAuth2',
+'social_core.backends.google.GoogleOAuth',
 'django.contrib.auth.backends.ModelBackend',
+
 )
 SOCIAL_AUTH_VK_OAUTH2_KEY = '7472318'
 SOCIAL_AUTH_VK_OAUTH2_SECRET = 'KNImVBPwsIaoAaiA5GPC'
 SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '514100249374-a3sdtj2409if8fek548gsqusnmm8p8ct.apps.googleusercontent.com'  
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'Ufb4VU_3D38oyl7JOXBbeUVq'
+USE_X_FORWARDED_HOST = True

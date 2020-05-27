@@ -20,6 +20,7 @@
                 <li><a href="{% url "split_bill:login" %}?next={{request.path}}">login</a></li>
                 <li><a href="{% url "split_bill:register" %}">register</a></li>
 				<li><a href="{% url "social:begin" "vk-oauth2" %}">Войти через VKонтакте</a></li>
+				<li><a href="{% url "social:begin" "google-oauth2" %}">Google</a></li>
             {% endif %}
         </ul>
         </div>
